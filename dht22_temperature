@@ -1,0 +1,26 @@
+#!/usr/bin/python
+import Adafruit_DHT
+import sys
+
+sensor = Adafruit_DHT.DHT22
+pin = 4
+
+
+if len(sys.argv) == 2 and sys.argv[1] == 'config':
+	print """graph_title Temperature
+graph_vlabel C
+graph_category dht22
+temperature.label temperature
+"""
+	sys.exit(0);
+
+
+# Try to grab a sensor reading.  Use the read_retry method which will retry up
+# to 15 times to get a sensor reading (waiting 2 seconds between each retry).
+humidity, temperature = Adafruit_DHT.read_retry(sensor, pin)
+
+if humidity is not None and temperature is not None:
+	print 'temperature.value %0.1f' % (temperature)
+else:
+	print 'Failed to get reading. Try again!'
+	sys.exit(-1)
