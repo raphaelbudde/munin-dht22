@@ -15,7 +15,7 @@ humidity.label humidity
 humidity.min 0.0
 humidity.max 100.0
 humidity.warning 60
-humidity.critical 70
+humidity.critical 65
 """
         sys.exit(0);
 
